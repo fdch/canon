@@ -1,0 +1,962 @@
+#N canvas 946 25 298 735 10;
+#X declare -path ./lib/;
+#N canvas 62 196 597 542 mixer 1;
+#X obj 200 201 cnv 15 199 120 empty empty mixer 10 10 0 10 -1 -262144
+0;
+#X obj 201 330 +~;
+#X obj 364 334 +~;
+#X obj 204 357 +~;
+#X obj 345 358 +~;
+#X obj 188 405 throw~ ainlor-out-l;
+#X obj 348 411 throw~ ainlor-out-r;
+#X obj 367 390 delwrite~ toleft 100;
+#X obj 206 384 delwrite~ toright 100;
+#X obj 195 501 throw~ ainlor-out-r;
+#X obj 338 501 throw~ ainlor-out-l;
+#X obj 338 449 delread~ toleft 55;
+#X obj 195 449 delread~ toright 55;
+#X obj 295 98 *~ 0.5;
+#X obj 195 471 *~ 0.4;
+#X obj 338 471 *~ 0.4;
+#X obj 390 203 tgl 8 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 491 137 tgl 40 0 empty empty hide 0 -10 0 10 -262144 -1 -1 1
+1;
+#X msg 405 251 \; pd-mixer vis \$1 \;;
+#X msg 415 227 set \$1;
+#X obj 215 221 myvu;
+#X obj 250 221 myvu;
+#X obj 320 221 myvu;
+#X obj 355 221 myvu;
+#X obj 285 221 myvu;
+#X obj 96 110 env~;
+#X floatatom 96 132 5 0 0 0 - - -, f 5;
+#X obj 111 29 catch~ ainout-1;
+#X obj 177 57 catch~ ainout-2;
+#X obj 281 30 catch~ ainout-3, f 16;
+#X obj 344 65 catch~ ainout-4;
+#X obj 408 99 catch~ ainout-5;
+#X connect 1 0 3 0;
+#X connect 2 0 4 1;
+#X connect 3 0 5 0;
+#X connect 3 0 8 0;
+#X connect 4 0 6 0;
+#X connect 4 0 7 0;
+#X connect 11 0 15 0;
+#X connect 12 0 14 0;
+#X connect 13 0 24 0;
+#X connect 13 0 24 1;
+#X connect 14 0 9 0;
+#X connect 15 0 10 0;
+#X connect 16 0 18 0;
+#X connect 16 0 19 0;
+#X connect 17 0 16 0;
+#X connect 19 0 17 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 1;
+#X connect 22 0 2 0;
+#X connect 23 0 2 1;
+#X connect 24 0 3 1;
+#X connect 24 1 4 0;
+#X connect 25 0 26 0;
+#X connect 27 0 20 0;
+#X connect 27 0 25 0;
+#X connect 28 0 21 0;
+#X connect 29 0 13 0;
+#X connect 30 0 22 0;
+#X connect 31 0 23 0;
+#X coords 0 -1 1 1 199 120 2 200 200;
+#X restore 2 576 pd mixer;
+#N canvas 225 64 297 239 (subpatch) 0;
+#X obj 10 10 cnv 15 78 63 empty empty empty 20 12 0 14 -1 -262144 0
+;
+#X obj 15 14 tgl 15 0 empty empty dsp 17 7 0 10 -262144 -1 -262144
+1 1;
+#X obj 15 51 nbx 4 13 0 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 44.1 256;
+#X obj 88 116 loadbang;
+#X obj 16 146 samplerate~;
+#X obj 15 32 bng 15 250 50 0 empty empty sr 17 7 0 10 -262144 -1 -262144
+;
+#X obj 16 168 / 1000;
+#X msg 18 92 \; pd dsp \$1;
+#X msg 95 146 1;
+#X obj 64 169 delay 300;
+#X obj 79 12 tgl 8 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 235 20 tgl 40 0 empty empty hide 0 -10 0 10 -262144 -1 -1 0
+1;
+#X msg 110 48 set \$1;
+#X obj 13 207 namecanvas dsppatch;
+#X msg 100 72 \; dsppatch vis \$1 \;;
+#X obj 64 49 tgl 15 0 cpuwin cpuwin-set CPU 1 -8 0 10 -262144 -1 -262144
+1 1;
+#X connect 1 0 7 0;
+#X connect 3 0 8 0;
+#X connect 3 0 9 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 2 0;
+#X connect 8 0 1 0;
+#X connect 9 0 4 0;
+#X connect 10 0 14 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X coords 0 1 100 -1 78 63 1 10 10;
+#X restore 204 8 graph;
+#N canvas 152 80 392 295 toains 0;
+#X obj 50 50 cnv 15 200 130 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 58 160 tgl 15 0 empty empty P-5 17 7 0 10 -262144 -1 -228856
+1 1;
+#X obj 58 87 tgl 15 0 empty empty P-1 17 7 0 10 -262144 -1 -262144
+1 1;
+#X obj 58 105 tgl 15 0 empty empty P-2 17 7 0 10 -262144 -1 -262144
+1 1;
+#X obj 58 123 tgl 15 0 empty empty P-3 17 7 0 10 -262144 -1 -262144
+1 1;
+#X obj 58 141 tgl 15 0 empty empty P-4 17 7 0 10 -262144 -1 -262144
+1 1;
+#X obj 13 245 s toain-onoff;
+#X msg 14 208 1 \$1;
+#X msg 54 208 2 \$1;
+#X msg 94 208 3 \$1;
+#X msg 134 208 4 \$1;
+#X obj 58 77 tgl 8 0 open-p-all open-p-all-set all 12 4 0 8 -262144
+-1 -262144 1 1;
+#X obj 15 26 r open-p-all;
+#X obj 58 54 tgl 20 0 players-onoff players-onoff-set players-onoff
+25 10 0 10 -262144 -1 -262144 1 1;
+#X obj 164 84 tgl 15 0 a-onoff a-onoff-set METRO_READ 17 7 0 10 -262144
+-1 -262144 1 1;
+#X obj 165 116 nbx 5 14 0 1e+37 0 0 a-speed a-speed-set metro_speed
+0 -8 0 10 -262144 -1 -262144 10 256;
+#X obj 97 159 nbx 5 14 -1e+37 1e+37 0 0 empty ard-out-5 empty 0 -8
+0 10 -262144 -1 -1 0 256;
+#X obj 97 87 nbx 5 14 -1e+37 1e+37 0 0 empty ard-out-1 empty 0 -8 0
+10 -262144 -1 -1 1.02999 256;
+#X obj 97 105 nbx 5 14 -1e+37 1e+37 0 0 empty ard-out-2 empty 0 -8
+0 10 -262144 -1 -1 1.85039 256;
+#X obj 97 123 nbx 5 14 -1e+37 1e+37 0 0 empty ard-out-3 empty 0 -8
+0 10 -262144 -1 -1 1.86838 256;
+#X obj 97 141 nbx 5 14 -1e+37 1e+37 0 0 empty ard-out-4 empty 0 -8
+0 10 -262144 -1 -1 1.3308 256;
+#X obj 168 148 hsl 50 10 0.001 0.01 0 0 limite-inferior limite-inferior-set
+limite_inferior -2 -8 0 8 -262144 -1 -262144 3811 1;
+#X obj 165 162 nbx 5 14 -1e+37 1e+37 0 0 empty limite-inferior empty
+0 -8 0 10 -262144 -1 -1 0.008 256;
+#X obj 237 54 tgl 8 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 318 23 tgl 40 0 empty empty hide 0 -10 0 10 -262144 -1 -1 0
+1;
+#X msg 265 116 set \$1;
+#X msg 255 140 \; pd-toains vis \$1 \;;
+#X obj 173 62 tgl 15 0 array_win array_win-set array_win 19 7 0 10
+-262144 -1 -262144 0 1;
+#X msg 178 213 5 \$1;
+#X floatatom 266 205 5 0 0 0 - - -, f 5;
+#X obj 266 224 s mult;
+#X floatatom 312 206 5 0 0 0 - - -, f 5;
+#X obj 312 225 s offset;
+#X connect 1 0 28 0;
+#X connect 2 0 7 0;
+#X connect 3 0 8 0;
+#X connect 4 0 9 0;
+#X connect 5 0 10 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 9 0 6 0;
+#X connect 10 0 6 0;
+#X connect 12 0 1 0;
+#X connect 12 0 2 0;
+#X connect 12 0 3 0;
+#X connect 12 0 4 0;
+#X connect 12 0 5 0;
+#X connect 23 0 26 0;
+#X connect 23 0 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 24 0;
+#X connect 28 0 6 0;
+#X connect 29 0 30 0;
+#X connect 31 0 32 0;
+#X coords 0 -1 1 1 200 130 2 50 50;
+#X restore 2 8 pd toains;
+#N canvas 463 76 590 357 out 0;
+#X obj 347 315 dac~;
+#X obj 355 196 catch~ sum;
+#X obj 355 218 *~ 0.3;
+#X obj 100 100 cnv 15 79 120 empty empty empty 20 12 0 14 -1 -262144
+0;
+#X obj 136 130 vu 15 80 final-myvu empty 20 -8 0 8 -1 -262144 1 0;
+#X obj 116 109 vsl 15 100 0.01 6 1 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 9900 1;
+#X obj 294 147 *~;
+#X msg 117 238 \$1 10;
+#X obj 117 260 line~;
+#X obj 33 147 sel 0;
+#X msg 28 186 set \$1;
+#X msg 28 208 6;
+#X obj 136 107 tgl 15 0 empty empty mute 17 7 0 10 -261234 -1 -262144
+0 1;
+#X msg 71 45 0;
+#X obj 71 25 sel 1;
+#X msg 19 72 set 0;
+#X obj 294 95 r~ \$0-ln;
+#X obj 429 143 *~;
+#X obj 429 94 r~ \$0-ln;
+#X obj 117 282 s~ \$0-ln;
+#X obj 294 208 hip~ 3;
+#X obj 429 205 hip~ 3;
+#X obj 116 59 r myvu-set;
+#X obj 168 101 tgl 8 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 283 21 tgl 40 0 empty empty hide 0 -10 0 10 -262144 -1 -1 0
+1;
+#X msg 211 47 set \$1;
+#X msg 187 119 \; pd-out vis \$1 \;;
+#X obj 444 116 catch~ ainlor-out-r;
+#X obj 309 118 catch~ ainlor-out-l;
+#X obj 294 244 +~;
+#X obj 429 243 +~;
+#X obj 303 170 throw~ final-env;
+#X obj 443 170 throw~ final-env;
+#N canvas 0 22 450 300 final-env 0;
+#X obj 34 16 catch~ final-env;
+#X obj 34 38 env~ 4096;
+#X obj 34 60 - 100;
+#X obj 34 82 s final-myvu;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X restore 198 275 pd final-env;
+#X connect 1 0 2 0;
+#X connect 2 0 29 1;
+#X connect 2 0 30 1;
+#X connect 5 0 7 0;
+#X connect 5 0 9 0;
+#X connect 6 0 20 0;
+#X connect 6 0 31 0;
+#X connect 7 0 8 0;
+#X connect 8 0 19 0;
+#X connect 9 1 10 0;
+#X connect 9 1 15 0;
+#X connect 10 0 11 0;
+#X connect 11 0 5 0;
+#X connect 12 0 14 0;
+#X connect 13 0 5 0;
+#X connect 14 0 13 0;
+#X connect 14 1 11 0;
+#X connect 15 0 12 0;
+#X connect 16 0 6 0;
+#X connect 17 0 21 0;
+#X connect 17 0 32 0;
+#X connect 18 0 17 0;
+#X connect 20 0 29 0;
+#X connect 21 0 30 0;
+#X connect 22 0 5 0;
+#X connect 23 0 26 0;
+#X connect 23 0 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 24 0;
+#X connect 27 0 17 1;
+#X connect 28 0 6 1;
+#X connect 29 0 0 0;
+#X connect 30 0 0 1;
+#X coords 0 -1 1 1 79 120 1 100 100;
+#X restore 203 576 pd out;
+#N canvas 288 73 559 459 midi 0;
+#X obj 100 100 cnv 15 78 63 empty empty empty 20 12 0 14 -1 -262144
+0;
+#X obj 102 105 nbx 2 15 0 127 0 0 empty midi-in midi 30 7 0 10 -262144
+-1 -262144 55 256;
+#X obj 102 123 tgl 15 0 midi-in-rnd-spg midi-in-rnd-spg-set rand 18
+7 0 10 -262144 -1 -262144 1 1;
+#N canvas 24 430 574 210 midi-randomizer 0;
+#X obj 20 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 20 121 sel 1;
+#X obj 20 165 s lstate-1;
+#X obj 90 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 90 121 sel 1;
+#X obj 160 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 160 121 sel 1;
+#X obj 230 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 230 121 sel 1;
+#X obj 300 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 300 121 sel 1;
+#X obj 20 47 spigot;
+#X obj 93 30 r midi-in-rnd-spg;
+#X msg 20 143 rnd;
+#X msg 90 143 rnd;
+#X msg 160 143 rnd;
+#X msg 230 143 rnd;
+#X msg 300 143 rnd;
+#X obj 90 165 s lstate-2;
+#X obj 160 165 s lstate-3;
+#X obj 230 165 s lstate-4;
+#X obj 300 165 s lstate-5;
+#X obj 393 102 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 393 122 sel 1;
+#X obj 393 144 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 393 164 s openit-set;
+#X obj 20 25 r midi-in;
+#X obj 20 77 sel 48 50 52 53 55 72 49, f 77;
+#X obj 433 102 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 433 122 sel 1;
+#X obj 433 144 s reset-all-set;
+#X connect 0 0 1 0;
+#X connect 1 0 13 0;
+#X connect 3 0 4 0;
+#X connect 4 0 14 0;
+#X connect 5 0 6 0;
+#X connect 6 0 15 0;
+#X connect 7 0 8 0;
+#X connect 8 0 16 0;
+#X connect 9 0 10 0;
+#X connect 10 0 17 0;
+#X connect 11 0 27 0;
+#X connect 12 0 11 1;
+#X connect 13 0 2 0;
+#X connect 14 0 18 0;
+#X connect 15 0 19 0;
+#X connect 16 0 20 0;
+#X connect 17 0 21 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 26 0 11 0;
+#X connect 27 0 0 0;
+#X connect 27 1 3 0;
+#X connect 27 2 5 0;
+#X connect 27 3 7 0;
+#X connect 27 4 9 0;
+#X connect 27 5 22 0;
+#X connect 27 6 28 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X restore 104 284 pd midi-randomizer;
+#N canvas 356 227 214 285 midi-notes 0;
+#X obj 26 12 notein;
+#X obj 53 67 spigot;
+#X obj 97 67 spigot;
+#X obj 86 12 r midi-notes-sp;
+#X obj 26 44 t f f;
+#X obj 26 238 s midi-in;
+#X obj 53 162 pack f f f;
+#X obj 53 89 pack;
+#X msg 53 184 \; mparty-\$1 \$2 \$3;
+#X obj 53 132 - 1;
+#X obj 53 110 poly 5 0;
+#X connect 0 0 4 0;
+#X connect 0 1 2 0;
+#X connect 1 0 7 0;
+#X connect 2 0 7 1;
+#X connect 3 0 1 1;
+#X connect 3 0 2 1;
+#X connect 4 0 5 0;
+#X connect 4 1 1 0;
+#X connect 6 0 8 0;
+#X connect 7 0 10 0;
+#X connect 9 0 6 0;
+#X connect 10 0 9 0;
+#X connect 10 1 6 1;
+#X connect 10 2 6 2;
+#X restore 105 204 pd midi-notes;
+#X obj 102 142 tgl 15 0 midi-notes-sp midi-notes-sp-set note 18 7 0
+10 -262144 -1 -262144 0 1;
+#N canvas 0 22 204 270 initial 0;
+#X msg 11 44 1;
+#X obj 11 22 r loadbang;
+#X msg 11 68 \; midi-in-rnd-spg-set \$1 \;;
+#X obj 16 110 r myvu-set;
+#X obj 16 132 sel 1;
+#X msg 16 184 \; midi-notes-sp-set 1 \;;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X restore 103 307 pd initial;
+#X obj 168 103 tgl 8 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 423 42 tgl 40 0 empty empty hide 0 -10 0 10 -262144 -1 -1 0
+1;
+#X msg 283 110 set \$1;
+#X msg 273 134 \; pd-midi vis \$1 \;;
+#X obj 151 136 tgl 20 0 openit openit-set [72] -3 -10 0 12 -262144
+-1 -262144 1 1;
+#X obj 326 188 catch~ presum;
+#X obj 326 327 throw~ sum;
+#X obj 326 210 hip~ 5;
+#X obj 326 232 hip~;
+#X obj 326 254 lop~ 10000;
+#X msg 427 328 \; mod 0.5 \; indx 10 \;;
+#X obj 429 305 r loadbang;
+#X obj 104 225 clone -s 1 wshaper 5;
+#X obj 104 245 clone -s 1 mparty 5;
+#X connect 7 0 10 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 12 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 16 0 13 0;
+#X connect 18 0 17 0;
+#X coords 0 -1 1 1 78 63 2 100 100;
+#X restore 204 75 pd midi;
+#X obj 2 2 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 188 lstate 1;
+#X obj 2 328 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 255 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 401 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 474 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 547 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 570 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 698 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 2 182 cnv 4 280 4 empty display-on empty 20 12 0 14 -24198 -262144
+0;
+#X obj 5 553 hsl 275 15 0.01 6 1 0 myvu-set myvu-set-set all_myvu_set
+100 7 0 10 -4034 -1 -1 27400 1;
+#N canvas 333 335 451 117 controls 0;
+#X obj 1 1 cnv 15 280 40 empty empty empty 20 12 0 14 -1 -66577 0;
+#X obj 3 22 bng 15 250 50 0 \$0-start \$0-start-set start 17 7 0 10
+-4034 -13381 -262144;
+#X obj 53 22 bng 15 250 50 0 \$0-stop \$0-stop-set stop 17 7 0 10 -258113
+-86277 -262144;
+#X obj 98 22 bng 15 250 50 0 \$0-reset \$0-reset-set reset 17 7 0 10
+-260097 -86853 -262144;
+#X obj 149 22 bng 15 250 50 0 diverge diverge-set diverge 17 7 0 10
+-257985 -83269 -262144;
+#X obj 218 22 bng 15 250 50 0 reset-all reset-all-set rst-all 17 7
+0 10 -159808 -45076 -262144;
+#X obj 13 4 tgl 15 0 timerwin-set timerwin-set-set display_timer_window
+17 7 0 10 -262144 -1 -262144 1 1;
+#X obj 160 4 tgl 15 0 guts guts-set display_guts 17 7 0 10 -262144
+-1 -262144 0 1;
+#X obj 268 4 tgl 8 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 366 18 tgl 40 0 empty empty hide 0 -10 0 10 -262144 -1 -1 0
+1;
+#X msg 293 8 set \$1;
+#X msg 239 47 \; pd-controls vis \$1 \;;
+#X connect 8 0 11 0;
+#X connect 8 0 10 0;
+#X connect 9 0 8 0;
+#X connect 10 0 9 0;
+#X coords 0 -1 1 1 280 40 2 1 1;
+#X restore 2 140 pd controls;
+#N canvas 475 35 406 179 META 0;
+#X text 16 10 ************************************************************
+;
+#X text 16 125 fedecamarahalac.com;
+#X text 16 139 ************************************************************
+;
+#X text 16 21 Este patch utiliza abstracciones abs-lorenz \, abs-siginfo
+\, abs-minimax y abs-norm;
+#X text 16 109 Cualquier cosa contactate conmigo \, salutes!;
+#X text 16 51 Dentro del directorio "lib" \, estan tambien los objetos
+compilados para mac y sus codigos \, por si queres compilarlos para
+reemplazar esas abstracciones por sus respectivos objetos y obtener
+otros resultados.;
+#X restore 236 704 pd META;
+#N canvas 625 173 431 421 README 0;
+#X text 13 12 Leeme: 1- Conectar teclado midi (usb) y placa de sonido
+primero 2- Abrir PD (vanilla \, version 0.47-1) 3- Abrir main.pd 4-
+DSP tiene que estar encendido == Patch esta listo 5- Midi nota 72 EMPIEZA
+(se vuelve verde) 5-1 (apretar el boton "start" verde para que inicie
+el cronometro) 5-2 (cuidado que "reset" \, boton naranja \, reinicia
+el cronometro... y "stop" \, boton rojo \, lo apaga....) 5-3 APRETAR
+libremente "diverge" \, boton amarillo \, cada tanto... 6- Midi nota
+72 TERMINA (se vuelve rojo) <-- NO APRETAR MAS DE UNA VEZ... Tiene
+un retraso de 10 segundos \, pero va a andar (va a hacer un fade-out
+que es necesario para el final de la obra) NOTA: Midi notas 48 50 52
+53 55 (DO-RE-MI-FA-SOL) hacen que los sistemas de lorenz tengan distintas
+condiciones iniciales \, y entonces divergen entre si \, APRETARLAS
+Las teclas midi tambien hacen sonidos \, asi que tocalas!! salutes!
+fd;
+#X restore 51 705 pd README;
+#N canvas 755 488 189 239 core 0;
+#N canvas 0 23 438 134 myvu-set 0;
+#X obj 90 14 r myvu-set-1;
+#X obj 251 14 r myvu-set-3;
+#X obj 172 14 r myvu-set-2;
+#X obj 331 14 r myvu-set-6;
+#X msg 90 36 1;
+#X msg 172 36 2;
+#X msg 251 36 3;
+#X msg 331 36 6;
+#X msg 131 77 \; myvu-set \$1;
+#X obj 9 14 r myvu-set-0;
+#X msg 9 36 0;
+#X msg 242 73 set \$1;
+#X obj 242 95 s myvu-set-set;
+#X obj 297 72 r myvu-set;
+#X connect 0 0 4 0;
+#X connect 1 0 6 0;
+#X connect 2 0 5 0;
+#X connect 3 0 7 0;
+#X connect 4 0 8 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;
+#X connect 10 0 8 0;
+#X connect 11 0 12 0;
+#X connect 13 0 11 0;
+#X restore 11 29 pd myvu-set;
+#N canvas 437 514 450 300 loadbang 0;
+#X obj 13 12 loadbang;
+#X obj 12 171 r reset-all;
+#X msg 12 194 \; limite-inferior-set 0.008 \; a-speed-set 10 \;;
+#X msg 229 48 -0.66;
+#X obj 229 27 r loadbang;
+#X msg 12 34 \; myvu-set 0 \; reset-all bang \; loadbang bang \; limite-inferior-set
+0.008 \; a-speed-set 10 \; timerwin-set 1 \; cpuwin-set 1 \; array_win-set
+0 \;;
+#X msg 229 70 \; wshape-5 const \$1 \; wshape-1 const \$1 \; wshape-2
+const \$1 \; wshape-3 const \$1 \; wshape-4 const \$1 \;;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X restore 11 50 pd loadbang;
+#N canvas 169 310 145 80 ainlor 0;
+#X obj 14 14 r toain-onoff;
+#X obj 14 41 clone -s 1 lordard 5;
+#X connect 0 0 1 0;
+#X restore 11 91 pd ainlor;
+#N canvas 506 25 437 283 timer_window 1;
+#N canvas 268 64 614 369 time 0;
+#N canvas 0 22 260 375 timer 0;
+#X obj 25 57 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 25 109 f;
+#X obj 56 110 + 1;
+#X obj 81 226 int;
+#X obj 81 248 % 60;
+#X obj 25 250 / 60;
+#X obj 25 271 int;
+#X msg 96 76 0;
+#X msg 25 34 1;
+#X msg 59 55 0;
+#X obj 25 209 t f f;
+#X obj 25 293 s \$0-min;
+#X obj 81 270 s \$0-sec;
+#X obj 25 11 r \$0-start;
+#X obj 96 55 r \$0-start;
+#X obj 59 32 r \$0-stop;
+#N canvas 645 85 144 189 reset 0;
+#X obj 36 121 s \$0-sec;
+#X obj 17 140 s \$0-min;
+#X obj 17 34 r \$0-reset;
+#X msg 17 56 set 0;
+#X obj 72 56 outlet;
+#X obj 17 79 t a a;
+#X connect 2 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 0 0;
+#X restore 125 76 pd reset;
+#X obj 25 77 metro 1000;
+#X obj 111 173 print timer;
+#X obj 116 311 pack 0 f f;
+#X msg 141 110 started;
+#X msg 111 141 stopped at \$2 mins \$3 secs;
+#X connect 0 0 17 0;
+#X connect 1 0 2 0;
+#X connect 1 0 10 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 4 0 12 0;
+#X connect 4 0 19 2;
+#X connect 5 0 6 0;
+#X connect 6 0 11 0;
+#X connect 6 0 19 1;
+#X connect 7 0 1 1;
+#X connect 7 0 3 1;
+#X connect 7 0 6 1;
+#X connect 7 0 11 0;
+#X connect 7 0 12 0;
+#X connect 8 0 0 0;
+#X connect 9 0 0 0;
+#X connect 10 0 5 0;
+#X connect 10 1 3 0;
+#X connect 13 0 8 0;
+#X connect 14 0 7 0;
+#X connect 14 0 20 0;
+#X connect 15 0 9 0;
+#X connect 15 0 19 0;
+#X connect 16 0 7 0;
+#X connect 17 0 1 0;
+#X connect 19 0 21 0;
+#X connect 20 0 18 0;
+#X connect 21 0 18 0;
+#X restore 405 1 pd timer;
+#X obj 201 1 cnv 15 198 198 empty \$0-sec-set 52 25 98 0 125 -1 -262144
+0;
+#X obj 1 1 cnv 15 198 198 empty \$0-min-set 2 33 98 0 220 -1 -262144
+0;
+#N canvas 0 22 450 300 sec-set 0;
+#X msg 181 108 label \$1;
+#X obj 181 86 makefilename %d;
+#X obj 87 85 sel 1;
+#X obj 87 65 > 9;
+#X obj 72 174 s \$0-sec-set;
+#X msg 72 152 label_font 0 \$1 \, label_pos \$2 98;
+#X msg 120 123 220 33;
+#X msg 74 123 125 25;
+#X obj 104 4 r \$0-sec;
+#X obj 112 28 route set;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 0 7 0;
+#X connect 2 1 6 0;
+#X connect 3 0 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 5 0;
+#X connect 8 0 9 0;
+#X connect 9 1 1 0;
+#X connect 9 1 3 0;
+#X restore 405 22 pd sec-set;
+#N canvas 0 22 345 260 min-sec 0;
+#X msg 145 106 label \$1;
+#X obj 145 84 makefilename %d;
+#X obj 104 104 sel 1;
+#X obj 104 84 > 9;
+#X msg 89 171 label_font 0 \$1 \, label_pos \$2 98;
+#X msg 137 142 220 33;
+#X msg 91 142 125 25;
+#X obj 89 193 s \$0-min-set;
+#X obj 126 30 r \$0-min;
+#X obj 126 53 route set;
+#X connect 0 0 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 6 0;
+#X connect 2 1 5 0;
+#X connect 3 0 2 0;
+#X connect 4 0 7 0;
+#X connect 5 0 4 0;
+#X connect 6 0 4 0;
+#X connect 8 0 9 0;
+#X connect 9 1 3 0;
+#X connect 9 1 1 0;
+#X restore 405 43 pd min-sec;
+#N canvas 0 22 123 178 timer-loadbang 0;
+#X obj 24 25 loadbang;
+#X obj 24 47 int 0;
+#X obj 24 69 t f f f;
+#X obj 24 91 s \$0-sec;
+#X obj 24 113 s \$0-msec;
+#X obj 24 135 s \$0-min;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X restore 405 62 pd timer-loadbang;
+#X coords 0 -1 1 1 400 200 1 0 0;
+#X restore 13 38 pd time;
+#X obj 13 15 cnv 15 400 20 empty display-on empty 20 12 0 14 -24198
+-262144 0;
+#X obj 13 241 cnv 15 400 20 empty display-on empty 20 12 0 14 -24198
+-262144 0;
+#X obj 396 18 tgl 15 0 timerwin timerwin-set empty 17 7 0 10 -262144
+-1 -1 1 1;
+#X restore 11 111 pd timer_window;
+#N canvas 15 106 383 307 displays 0;
+#X msg 13 61 \; pd-timer_window vis \$1;
+#X obj 171 15 r guts;
+#X obj 13 19 r timerwin;
+#X obj 13 110 r timerwin;
+#X msg 13 132 set \$1;
+#X obj 13 154 s timerwin-set-set;
+#X msg 171 39 \; pdcorevis-set \$1 \;;
+#X obj 171 90 r pdcorevis;
+#X msg 171 112 \; pd-core vis \$1 \; guts-set set \$1 \;;
+#X obj 16 189 r cpuwin;
+#X msg 16 225 \; pd-cpu_usage_window vis \$1;
+#X obj 214 189 r array_win;
+#X msg 214 211 \; pd-arrays vis \$1;
+#X connect 1 0 6 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;
+#X connect 11 0 12 0;
+#X restore 11 131 pd displays;
+#N canvas 187 24 735 741 arrays 0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array wshape-1 131 float 1;
+#A 0 2.47881 2.44161 2.40516 2.37106 2.33641 2.30231 2.26766 2.23356
+2.1992 2.1744 2.1492 2.1244 2.0836 2.0402 1.9961 1.9566 1.9188 1.8816
+1.8438 1.8066 1.7688 1.733 1.70149 1.67049 1.63959 1.62719 1.60919
+1.58439 1.53919 1.45719 1.44459 1.32438 1.13958 1.12718 1.05998 1.47719
+1.39039 1.32919 1.30438 1.25918 1.23719 1.22458 1.17998 2.0116 1.9738
+1.17458 1.16218 1.13998 1.13718 1.12458 1.07998 1.05998 1.9908 1.01458
+1.00218 1 1.82486 1.82073 1.739 2.0632 2.1624 2.33241 2.40681 2.65041
+2.72282 2.73542 2.78782 2.94122 2.97842 3 2.24612 2.22958 2.21278 2.19858
+2.19228 2.18608 2.17978 2.17358 2.16728 2.16108 2.15478 2.14858 2.46881
+2.43861 2.43231 2.42611 2.41881 2.38161 2.34921 2.32441 2.27841 2.20881
+2.1584 2.1322 2.1184 2.98962 2.98002 1.9844 1.64879 2.97963 2.96722
+2.96002 1.49919 1.47439 1.44919 1.42439 1.41999 1.8066 2.22441 2.94002
+1.42199 1.48399 1.53889 1.58229 1.62639 2.40241 2.50321 2.57121 2.62082
+2.88535 2.84402 2.80202 2.76068 2.71912 2.69122 2.66287 2.63497 2.60662
+2.57871 2.55036 2.51661;
+#X coords 0 -0.5 130 0.5 280 80 1 0 0;
+#X restore 34 43 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array wshape-2 131 float 1;
+#A 0 2.50507 2.51333 2.52173 2.53 2.5384 2.55 2.56 2.25714 2.26434
+2.27143 2.27863 2.28333 2.28753 2.29167 2.56065 2.56375 2.5669 2.57
+2.57315 2.57625 2.5794 2.59 2.60044 2.60251 2.60461 2.60667 2.60877
+2.61084 2.61294 2.615 2.6171 2.61917 2.62 2.88 2.9026 2.915 2.31827
+2.6225 2.62565 2.62875 2.6319 2.635 2.63815 2.64 2.06 2.0618 2.06357
+2.06537 2.06714 2.06894 2.07071 2.64073 2.64253 2.6443 2.6461 2.64787
+2.64966 2.65143 2.65323 2.655 2.6568 2.65857 2.66044 2.66251 2.66461
+2.66667 2.66877 2.67084 2.67294 2.675 2.6771 2.67917 2.68208 2.68546
+2.6889 2.69228 2.69571 2.6991 2.48087 2.485 2.18667 2.19507 2.20333
+2.21173 2.22 2.2284 2.23667 2.24507 2.25333 2.26173 2.27 2.2784 2.28667
+2.29507 2.305 2.3176 2.32667 2.33507 2.34333 2.35173 2.36 2.3663 2.3725
+2.3788 2.38333 2.38753 2.39167 2.39587 2.4 2.4063 2.4125 2.4188 2.43
+2.4413 2.4475 2.4538 2.46 2.4642 2.46833 2.47253 2.47667 2.48087 2.485
+2.4892 2.49333 2.49753 2.5 2.73239 2.72 2.7074 2.2;
+#X coords 0 1 130 -1 280 80 1 0 0;
+#X restore 383 92 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array wshape-3 131 float 1;
+#A 0 2.155 2.15977 2.17605 2.19264 2.2095 2.22609 1.146 1.1832 1.207
+1.2194 1.232 1.24661 1.26551 1.28411 1.30467 1.3336 1.363 1.39194 1.42134
+1.45321 1.49101 1.52195 1.55135 1.58028 1.60968 1.63862 2.87652 2.87032
+2.86401 2.85927 2.85717 2.85511 2.85301 2.85094 2.84884 2.84678 2.84468
+2.84261 2.84051 2.83813 2.83561 2.83313 2.83061 2.82813 2.82561 2.82313
+2.82061 2.82001 2.81961 2.81713 2.81461 2.81213 2.80961 2.80713 2.80461
+2.80213 2.79945 2.79591 2.79231 2.78876 2.78516 2.78162 2.77802 2.77447
+2.77087 2.76733 2.76373 2.76018 2.76001 2.89302 2.88061 2.75813 2.75561
+2.75313 2.75061 2.74813 2.74561 2.74313 2.74061 2.74001 1.90979 1.91399
+1.91813 1.92349 2.73761 1.93599 1.94146 1.94566 1.94979 1.95399 1.95813
+1.96233 1.96646 1.97066 1.97479 1.97899 1.98402 1.98942 1.99474 2.00014
+2.00545 2.01085 2.01617 2.02157 2.02688 2.03228 2.0376 2.04233 2.04646
+2.05066 2.0548 2.059 2.06361 2.06846 2.07323 2.07807 2.08284 2.08769
+2.09246 2.09731 2.10207 2.10692 2.11169 2.11654 2.12131 2.12615 2.13092
+2.13577 2.14054 2.14538 2.15015;
+#X coords 0 1 130 0 280 80 1 0 0;
+#X restore 37 323 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array wshape-4 131 float 1;
+#A 0 2.597 2.6188 2.644 2.6688 2.701 2.7382 2.752 2.7644 2.777 2.8094
+2.82 1.0994 2.827 2.8394 1.71 1.679 1.6475 1.61932 1.5916 1.56432 1.5366
+1.50932 1.4816 1.45432 1.4266 1.40747 1.39067 1.37414 1.35734 1.3408
+1.324 1.30747 1.29067 1.27413 1.256 1.2312 1.22 2.04533 2.03707 2.02867
+2.0204 1.21686 1.21266 1.20853 1.20433 1.2002 1.2 1.19852 1.19433 1.1902
+1.186 1.18187 1.18 2.46 1.924 2.472 2.48 1.8612 2.4847 2.491 1.21259
+1.23492 1.2576 1.27992 1.3026 1.32492 1.3476 1.36992 1.39167 1.41234
+1.43334 1.454 1.475 1.4894 1.502 1.5144 1.5305 1.5491 1.568 1.5866
+1.6055 1.6241 1.64266 1.6592 1.9447 1.951 1.9572 1.967 1.9794 1.992
+2.0044 2.017 2.02783 2.03833 2.04866 2.05916 2.0695 2.08 2.09033 2.10083
+2.11117 2.12133 2.1296 2.138 2.14627 2.15466 2.1666 2.1855 2.2041 2.223
+2.2416 2.2605 2.2791 2.298 2.3166 2.3355 2.3541 2.373 2.3916 2.40933
+2.42586 2.44267 2.4592 2.476 2.49253 2.50933 2.52587 2.54267 2.5592
+2.572 2.5844;
+#X coords 0 0 130 1 280 80 1 0 0;
+#X restore 378 307 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array wshape-5 131 float 1;
+#A 0 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+-0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66 -0.66
+;
+#X coords 0 0 130 1 280 80 1 0 0;
+#X restore 387 498 graph;
+#X restore 11 150 pd arrays;
+#N canvas 44 71 538 347 cpu_usage 0;
+#X obj 21 151 cputime;
+#X obj 21 95 metro 1000;
+#X msg 21 39 1;
+#X obj 21 123 t b b;
+#X obj 21 211 * 0.1;
+#X obj 21 180 int;
+#X obj 295 153 sel 1;
+#X obj 295 133 > 9;
+#X obj 142 287 s cpu-usage-set;
+#X obj 374 81 > 99;
+#X obj 374 103 sel 1;
+#X msg 363 126 0;
+#X msg 373 145 1;
+#X obj 285 108 spigot 1;
+#X obj 21 11 r loadbang;
+#X obj 159 67 t f f f;
+#X msg 346 195 color 13 0 0;
+#X msg 352 216 color 0 0 119;
+#X msg 393 241 color 0 0 46;
+#X msg 180 214 55 33;
+#X msg 233 213 37 25;
+#X msg 179 243 label_font 0 \$1 \, label_pos \$2 50;
+#X msg 283 213 37 18;
+#X obj 142 126 makefilename %d;
+#X obj 142 148 list prepend cpu;
+#X msg 142 182 label \$2-\$1;
+#X msg 417 153 CPU_overload;
+#X msg 423 127 CPU;
+#X connect 0 0 5 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 3 1 0 1;
+#X connect 4 0 15 0;
+#X connect 5 0 4 0;
+#X connect 6 0 20 0;
+#X connect 6 1 19 0;
+#X connect 6 1 18 0;
+#X connect 7 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 10 0 22 0;
+#X connect 10 0 16 0;
+#X connect 10 0 26 0;
+#X connect 10 1 12 0;
+#X connect 10 1 17 0;
+#X connect 10 1 27 0;
+#X connect 11 0 13 1;
+#X connect 12 0 13 1;
+#X connect 13 0 7 0;
+#X connect 14 0 2 0;
+#X connect 15 0 23 0;
+#X connect 15 1 13 0;
+#X connect 15 2 9 0;
+#X connect 16 0 8 0;
+#X connect 17 0 8 0;
+#X connect 18 0 8 0;
+#X connect 19 0 21 0;
+#X connect 20 0 21 0;
+#X connect 21 0 8 0;
+#X connect 22 0 21 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 8 0;
+#X connect 26 0 24 1;
+#X connect 27 0 24 1;
+#X restore 11 171 pd cpu_usage;
+#N canvas 506 333 436 129 cpu_usage_window 1;
+#X obj 9 9 cnv 100 400 100 empty cpu-usage-set 19-CPU 25 50 0 37 -262144
+-90133 0;
+#X restore 11 191 pd cpu_usage_window;
+#X obj 128 20 tgl 40 0 pdcorevis pdcorevis-set hide 0 -10 0 10 -262144
+-1 -1 0 1;
+#N canvas 0 22 450 300 paths 0;
+#X obj 18 40 declare -path ./lib/;
+#X restore 10 212 pd paths;
+#N canvas 109 482 342 234 automaton 0;
+#X text 172 68 send to each ardinfo;
+#X obj 19 125 automaton;
+#X obj 74 54 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 19 157 s end-reached;
+#X obj 74 32 r openit;
+#X obj 198 86 clone ard 5;
+#X text 83 123 <-- partitura;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 4 0 2 0;
+#X restore 11 70 pd automaton;
+#N canvas 434 334 283 375 note-72(onoff) 0;
+#N canvas 619 192 520 298 myvusetline 0;
+#X obj 117 22 r myvusetline;
+#X obj 117 96 line;
+#X obj 117 118 pow 2;
+#X obj 117 245 s myvu-set;
+#X obj 117 44 sel 1 0;
+#X obj 218 96 line;
+#X obj 354 164 tabletool myline;
+#X obj 211 137 tabread myline;
+#X obj 353 34 array define myline 100;
+#X msg 365 105 series 1 0 2;
+#X obj 366 82 r loadbang;
+#X obj 211 221 line;
+#X obj 200 46 t b b;
+#X msg 273 185 set 1;
+#X obj 211 159 pack f 10000;
+#X msg 220 67 set 0 \, 100 10000;
+#X msg 116 71 set 0.01 \, 1 10000;
+#X connect 0 0 4 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 16 0;
+#X connect 4 1 12 0;
+#X connect 5 0 7 0;
+#X connect 7 0 14 0;
+#X connect 9 0 6 0;
+#X connect 10 0 9 0;
+#X connect 11 0 3 0;
+#X connect 12 0 15 0;
+#X connect 12 1 13 0;
+#X connect 13 0 11 0;
+#X connect 14 0 11 0;
+#X connect 15 0 5 0;
+#X connect 16 0 1 0;
+#X restore 159 296 pd myvusetline;
+#N canvas 0 22 168 217 start-timer 0;
+#X obj 21 88 pipe 10010;
+#X obj 21 25 r start-timer;
+#X obj 21 47 route 0 1;
+#X obj 21 110 t b b;
+#X obj 48 135 s \$0-stop-set;
+#X obj 21 158 s \$0-reset-set;
+#X obj 46 69 s \$0-start-set;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 2 1 6 0;
+#X connect 3 0 5 0;
+#X connect 3 1 4 0;
+#X restore 159 316 pd start-timer;
+#X obj 16 37 sel 0 1, f 8;
+#X obj 16 14 r openit;
+#X obj 16 252 r myvu-set;
+#X obj 16 274 sel 0;
+#X msg 16 294 \; open-p-all-set 0 \; a-onoff-set 0 \; start-timer 0
+\;;
+#X text 76 14 <-- viene de [72] \, nota midi 72;
+#X msg 16 188 \; players-onoff-set 0 \; display-on color 223 223 0
+\; myvusetline 0 \;;
+#X msg 38 60 \; players-onoff-set 1 \; display-on color 196 196 0 \;
+open-p-all-set 1 \; a-onoff-set 1 \; myvusetline 1 \; start-timer 1
+\; mult 1 \; offset 1 \;;
+#X connect 2 0 8 0;
+#X connect 2 1 9 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X restore 11 8 pd note-72(onoff);
+#X text 92 70 <<-- partitura;
+#X restore 2 705 pd core;
+#X obj 2 334 lstate 3;
+#X obj 2 261 lstate 2;
+#X obj 2 407 lstate 4;
+#X obj 2 480 lstate 5;
